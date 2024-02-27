@@ -1,0 +1,50 @@
+# Migration XML Files for APIC
+Migration XML Files for APIC are Python scripts for create xml files to use POST method for configuration on Cisco ACI.
+It's useful to save time in minimize issues during make script.
+
+### Installation
+python version > 3
+use the package manager [pip](https://pip.pypa.io/en/stable/) to install requiments.
+
+```bash
+# Upgrade the pip 
+python3 -m pip install --upgrade pip 
+
+# Install dependencies 
+python3 -m pip install -r requirements.txt
+```
+
+### Usage
+
+Step 1 - run the script 00-Get-Interface_info.py
+It should be 4 files show running on the Input Files folder
+If the xlsx file is not exist the script will be created it.	
+ - NXOS_ACI_Info_baseline.xlsx 
+
+The excel will be created with 2 sheets one is the NXOS with the information like IP, HSRP group, SVI number and etc.
+And the other sheet call BD with requirements columns to run other scripts.
+
+After run the 00 script, It must be fill the group and vlans information on BD sheet in on the respective collumns.
+
+Step 2 - run the script 01-Prepare_XML-BD_Unicast_Routing.py
+	It'll be fill collouns on sheet BD with the NXOS sheet information according with VLANs filled in the collumn VLANs on the BD sheet
+	Also they'll fill IP, EPG, BD, unicast routing and Preffered Group as well.
+ 
+ After that you can fill the other information like Tenant, VRF, L3out usage for the BD, Application Profile, AAEP and so on.
+
+Step 3 - run the script 02-Create_XML-BD_Unicast_Routing_v3.py
+	On the Folder Output will be created xml files according group filled and the rollbacks are created automatically.
+
+Step 4  - run the script 03-Create_XML-Attach_EPG_to_AEP_v2.py
+	Create XML file to attach EPGs to AAEP with the name of the AAEP collumn filled.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
