@@ -1,0 +1,19 @@
+<polUni annotation="" dn="uni" nameAlias="" userdom="all">
+	{% for epg in epgs %}
+	<fvTenant annotation="" descr="" dn="uni/tn-{{ epg.tenant_name }}" name="{{ epg.tenant_name }}" nameAlias="" ownerKey="" ownerTag="" userdom="all">
+		<fvBD OptimizeWanBandwidth="no" arpFlood="yes" descr="" dn="uni/tn-{{ epg.tenant_name }}/BD-{{ epg.bd_name }}" epClear="no" hostBasedRouting="no" intersiteBumTrafficAllow="no" intersiteL2Stretch="no" ipLearning="yes" ipv6McastAllow="no" limitIpLearnToSubnets="yes" mcastARPDrop="yes" mcastAllow="no" multiDstPktAct="bd-flood" name="{{ epg.bd_name }}" type="regular" unicastRoute="{{ epg.unicast_routing }}" unkMacUcastAct="flood" unkMcastAct="flood" v6unkMcastAct="flood" vmac="not-applicable">
+			<fvRsBDToOut tnL3extOutName="{{ epg.l3out_nameTo_out }}"/>
+			<fvRsBdToEpRet resolveAct="resolve"/>
+			<fvRsCtx tnFvCtxName="{{ epg.vrf_ctx_name }}"/>
+			<fvSubnet ip="{{ epg.ip_subnet }}" ipDPLearning="enabled" scope="public,shared" virtual="no"/>
+		</fvBD>
+		<fvAp annotation="" descr="" dn="" name="{{ epg.app_profile_name }}" nameAlias="" ownerKey="" ownerTag="" prio="unspecified" userdom=":all:">
+			<fvAEPg annotation="" descr="" dn="uni/tn-{{ epg.tenant_name }}/ap-{{ epg.app_profile_name }}/epg-{{ epg_name }}" exceptionTag="" floodOnEncap="disabled" fwdCtrl="" hasMcastSource="no" isAttrBasedEPg="no" matchT="AtleastOne" name="{{ epg_name }}" nameAlias="" pcEnfPref="unenforced" prefGrMemb="{{ preffered_group }}" prio="unspecified" shutdown="no" userdom=":all:">
+				<fvRsBd annotation="" tnFvBDName="{{ epg.bd_name }}" userdom="all"/>
+				<fvRsCustQosPol annotation="" tnQosCustomPolName="" userdom="all"/>
+				<fvRsDomAtt annotation="" bindingType="none" classPref="encap" customEpgName="" delimiter="" encap="unknown" encapMode="auto" epgCos="Cos0" epgCosPref="disabled" instrImedcy="lazy" lagPolicyName="" netflowDir="both" netflowPref="disabled" numPorts="0" portAllocation="none" primaryEncap="unknown" primaryEncapInner="unknown" resImedcy="immediate" secondaryEncapInner="unknown" switchingMode="native" tDn="uni/phys-{{ epg.domain_name }}" untagged="no" userdom=":all:" vnetOnly="no"/>
+			</fvAEPg>
+		</fvAp>
+    </fvTenant>
+	{% endfor %}
+</polUni>

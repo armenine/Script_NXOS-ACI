@@ -1,0 +1,49 @@
+<polUni annotation="" dn="uni" nameAlias="" userdom="all">
+	<fvTenant annotation="" descr="" dn="uni/tn-TN_PROD" name="TN_PROD">
+		{% if rollback -%}
+		{% for bd in bds -%}
+			<fvBD OptimizeWanBandwidth="no" arpFlood="yes" descr="" dn="uni/tn-{{ bd['tenant_name'] }}/BD-{{ bd['bd_name'] }}" epClear="no" hostBasedRouting="no" intersiteBumTrafficAllow="no" intersiteL2Stretch="no" ipLearning="yes" ipv6McastAllow="no" limitIpLearnToSubnets="yes" mcastARPDrop="yes" mcastAllow="no" multiDstPktAct="bd-flood" name="{{ bd.bd_name }}" type="regular" unicastRoute="{{ bd['unicast_routing'] }}" unkMacUcastAct="flood" unkMcastAct="flood" v6unkMcastAct="flood" vmac="not-applicable">
+				<fvRsBDToOut tnL3extOutName="{{ bd['l3out_nameTo_out'] }}" status="deleted"/>
+				<fvRsBdToEpRet resolveAct="resolve"/>
+				<fvRsCtx tnFvCtxName="{{ bd['vrf_ctx_name'] }}"/>
+				{% if bd['unicast_routing'] is 'yes' -%}
+				<fvSubnet ip="{{ bd['ip_subnet'] }}" ipDPLearning="enabled" scope="public,shared" virtual="no" status="deleted"/>
+				{% endif-%}
+			</fvBD>
+		{% endfor -%}
+		{% elif test_bd -%}
+		{% for bd in bds -%}
+			<fvBD OptimizeWanBandwidth="no" arpFlood="yes" descr="" dn="uni/tn-{{ bd['tenant_name'] }}/BD-{{ bd['bd_name'] }}" epClear="no" hostBasedRouting="no" intersiteBumTrafficAllow="no" intersiteL2Stretch="no" ipLearning="yes" ipv6McastAllow="no" limitIpLearnToSubnets="yes" mcastARPDrop="yes" mcastAllow="no" multiDstPktAct="bd-flood" name="{{ bd.bd_name }}" type="regular" unicastRoute="{{ bd['unicast_routing'] }}" unkMacUcastAct="flood" unkMcastAct="flood" v6unkMcastAct="flood" vmac="not-applicable">
+				<fvRsBDToOut tnL3extOutName="{{ bd['l3out_nameTo_out'] }}"/>
+				<fvRsBdToEpRet resolveAct="resolve"/>
+				<fvRsCtx tnFvCtxName="{{ bd['vrf_ctx_name'] }}"/>
+				{% if bd['unicast_routing'] is 'yes' -%}
+				<fvSubnet ip="{{ bd['ip_subnet'] }}" ipDPLearning="enabled" scope="public,shared" virtual="no" status="deleted"/>
+				{% endif-%}
+			</fvBD>
+		{% endfor -%}
+		{% elif rollback_test_bd -%}
+		{% for bd in bds -%}
+			<fvBD OptimizeWanBandwidth="no" arpFlood="yes" descr="" dn="uni/tn-{{ bd['tenant_name'] }}/BD-{{ bd['bd_name'] }}" epClear="no" hostBasedRouting="no" intersiteBumTrafficAllow="no" intersiteL2Stretch="no" ipLearning="yes" ipv6McastAllow="no" limitIpLearnToSubnets="yes" mcastARPDrop="yes" mcastAllow="no" multiDstPktAct="bd-flood" name="{{ bd.bd_name }}" type="regular" unicastRoute="no" unkMacUcastAct="flood" unkMcastAct="flood" v6unkMcastAct="flood" vmac="not-applicable">
+				<fvRsBDToOut tnL3extOutName="{{ bd['l3out_nameTo_out'] }}" status="deleted"/>
+				<fvRsBdToEpRet resolveAct="resolve"/>
+				<fvRsCtx tnFvCtxName="{{ bd['vrf_ctx_name'] }}"/>
+				{% if bd['unicast_routing'] is 'yes' -%}
+				<fvSubnet ip="{{ bd['ip_subnet'] }}" ipDPLearning="enabled" scope="public,shared" virtual="no" status="deleted"/>
+				{% endif-%}
+			</fvBD>
+		{% endfor -%}
+		{% else -%}
+		{% for bd in bds -%}
+			<fvBD OptimizeWanBandwidth="no" arpFlood="yes" descr="" dn="uni/tn-{{ bd['tenant_name'] }}/BD-{{ bd['bd_name'] }}" epClear="no" hostBasedRouting="no" intersiteBumTrafficAllow="no" intersiteL2Stretch="no" ipLearning="yes" ipv6McastAllow="no" limitIpLearnToSubnets="yes" mcastARPDrop="yes" mcastAllow="no" multiDstPktAct="bd-flood" name="{{ bd.bd_name }}" type="regular" unicastRoute="{{ bd['unicast_routing'] }}" unkMacUcastAct="flood" unkMcastAct="flood" v6unkMcastAct="flood" vmac="not-applicable">
+				<fvRsBDToOut tnL3extOutName="{{ bd['l3out_nameTo_out'] }}"/>
+				<fvRsBdToEpRet resolveAct="resolve"/>
+				<fvRsCtx tnFvCtxName="{{ bd['vrf_ctx_name'] }}"/>
+				{% if bd['unicast_routing'] is 'yes' -%}
+				<fvSubnet ip="{{ bd['ip_subnet'] }}" ipDPLearning="enabled" scope="public,shared" virtual="no" status="deleted"/>
+				{% endif-%}
+			</fvBD>
+		{% endfor -%}
+		{% endif -%}
+	</fvTenant>
+</polUni>

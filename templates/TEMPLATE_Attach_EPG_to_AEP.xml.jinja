@@ -1,0 +1,15 @@
+<imdata totalCount="1">
+	<infraAttEntityP dn="uni/infra/attentp-{{ AAEPname }}" name="{{ AAEPname }}">
+		<infraGeneric name="default">
+            {% if rollback -%}
+            {% for epg in epgs -%}
+            <infraRsFuncToEpg encap="vlan-{{ epg['vlanId'] }}" instrImedcy="lazy" mode="regular" primaryEncap="unknown" tDn="uni/tn-{{ epg['tenant'] }}/ap-{{ epg['app-profile'] }}/epg-{{ epg['name'] }}" status="deleted"/>
+            {% endfor -%}
+            {% else -%}
+            {% for epg in epgs -%}
+         	<infraRsFuncToEpg encap="vlan-{{ epg['vlanId'] }}" instrImedcy="lazy" mode="regular" primaryEncap="unknown" tDn="uni/tn-{{ epg['tenant'] }}/ap-{{ epg['app-profile'] }}/epg-{{ epg['name'] }}"/>
+            {% endfor -%}
+            {% endif -%}
+		</infraGeneric>
+	</infraAttEntityP>
+</imdata>

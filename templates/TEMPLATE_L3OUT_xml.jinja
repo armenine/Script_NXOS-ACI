@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<imdata totalCount="1">
+	<fvTenant dn="uni/tn-{{ client['tenant']['name'] }}" name="{{ client['tenant']['name'] }}">
+	<l3extOut annotation="" descr="" dn="uni/tn-{{ client['tenant']['name'] }}/out-{{ client['l3out']['name'] }}" enforceRtctrl="export" mplsEnabled="no" name="{{ client['l3out']['name'] }}" nameAlias="" ownerKey="" ownerTag="" targetDscp="unspecified" userdom=":all:mgmt:common:">
+		<l3extRsL3DomAtt annotation="" tDn="uni/l3dom-{{ client['tenant']['domain'] }}" userdom=":all:mgmt:common:"/>
+		<l3extRsEctx annotation="" tnFvCtxName="{{ client['l3out']['vrf'] }}" userdom="all"/>
+		<l3extLNodeP annotation="" configIssues="" descr="" name="LEAF-1002" nameAlias="" ownerKey="" ownerTag="" tag="yellow-green" targetDscp="unspecified" userdom=":all:mgmt:common:" status="deleted">
+			<l3extRsNodeL3OutAtt annotation="" configIssues="" rtrId="192.168.196.16" rtrIdLoopBack="no" tDn="topology/pod-1/node-1002" userdom=":all:mgmt:common:"/>
+		</l3extLNodeP>
+		<l3extLNodeP annotation="" configIssues="" descr="" name="LEAF-1501" nameAlias="" ownerKey="" ownerTag="" tag="yellow-green" targetDscp="unspecified" userdom=":all:mgmt:common:" status="deleted">
+			<l3extRsNodeL3OutAtt annotation="" configIssues="" rtrId="192.168.197.15" rtrIdLoopBack="no" tDn="topology/pod-2/node-1501" userdom=":all:mgmt:common:"/>
+		</l3extLNodeP>
+		<l3extLNodeP annotation="" configIssues="" descr="" name="LEAF-1001" nameAlias="" ownerKey="" ownerTag="" tag="yellow-green" targetDscp="unspecified" userdom=":all:mgmt:common:" status="deleted">
+			<l3extRsNodeL3OutAtt annotation="" configIssues="" rtrId="192.168.196.15" rtrIdLoopBack="no" tDn="topology/pod-1/node-1001" userdom=":all:mgmt:common:"/>
+		</l3extLNodeP>
+		<l3extLNodeP annotation="" configIssues="" descr="" name="LEAF-1502" nameAlias="" ownerKey="" ownerTag="" tag="yellow-green" targetDscp="unspecified" userdom=":all:mgmt:common:" status="deleted">
+			<l3extRsNodeL3OutAtt annotation="" configIssues="" rtrId="192.168.197.16" rtrIdLoopBack="no" tDn="topology/pod-2/node-1502" userdom=":all:mgmt:common:"/>
+		</l3extLNodeP>
+		<l3extLNodeP annotation="" configIssues="" descr="" name="LEAF-1001-1002" nameAlias="" ownerKey="" ownerTag="" tag="yellow-green" targetDscp="unspecified" userdom=":all:mgmt:common:">
+			<l3extRsNodeL3OutAtt annotation="" configIssues="" rtrId="{{ client['node1002']['rtrId'] }}" rtrIdLoopBack="no" tDn="topology/pod-1/node-1002" userdom=":all:mgmt:common:">
+				<ipRouteP aggregate="no" annotation="" descr="" fromPfxLen="0" ip="0.0.0.0/0" name="" nameAlias="" pref="1" rtCtrl="" toPfxLen="0" userdom=":all:mgmt:common:">
+					<ipNexthopP annotation="" descr="{{ client['node']['route-description']}}" name="" nameAlias="" nhAddr="{{ client['node']['nhAddr'] }}" pref="unspecified" type="prefix" userdom=":all:mgmt:common:"/>
+				</ipRouteP>
+			</l3extRsNodeL3OutAtt>
+			<l3extRsNodeL3OutAtt annotation="" configIssues="" rtrId="{{ client['node1001']['rtrId'] }}" rtrIdLoopBack="no" tDn="topology/pod-1/node-1001" userdom=":all:mgmt:common:">
+				<ipRouteP aggregate="no" annotation="" descr="" fromPfxLen="0" ip="0.0.0.0/0" name="" nameAlias="" pref="1" rtCtrl="" toPfxLen="0" userdom=":all:mgmt:common:">
+					<ipNexthopP annotation="" descr="{{ client['node']['routedescr']}}" name="" nameAlias="" nhAddr="{{ client['node']['nhAddr'] }}" pref="unspecified" type="prefix" userdom=":all:mgmt:common:"/>
+				</ipRouteP>
+			</l3extRsNodeL3OutAtt>
+			<l3extLIfP annotation="" descr="" name="vPC_1001_1002_SW_L2_LEGADO" nameAlias="" ownerKey="" ownerTag="" prio="unspecified" tag="yellow-green" userdom=":all:mgmt:common:">
+				<l3extRsPathL3OutAtt addr="0.0.0.0" annotation="" autostate="disabled" descr="" encap="vlan-{{ client['l3out']['vlanid'] }}" encapScope="ctx" ifInstT="ext-svi" ipv6Dad="enabled" isMultiPodDirect="no" llAddr="::" mac="00:22:BD:F8:19:FF" mode="regular" mtu="inherit" tDn="topology/pod-1/protpaths-1001-1002/pathep-[VPC_1001_1002_SW_L2_LEGADO]" targetDscp="unspecified" userdom=":all:mgmt:common:">
+					<l3extMember addr="{{ client['node1002']['ip'] }}" annotation="" descr="" ipv6Dad="enabled" llAddr="::" name="" nameAlias="" side="B" userdom=":all:mgmt:common:">
+                    <l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:" status="deleted"/>
+					</l3extMember>
+					<l3extMember addr="{{ client['node1001']['ip'] }}" annotation="" descr="" ipv6Dad="enabled" llAddr="::" name="" nameAlias="" side="A" userdom=":all:mgmt:common:">
+                    <l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:" status="deleted"/>
+					</l3extMember>
+				</l3extRsPathL3OutAtt>
+				<l3extRsNdIfPol annotation="" tnNdIfPolName="" userdom="all"/>
+				<l3extRsLIfPCustQosPol annotation="" tnQosCustomPolName="" userdom="all"/>
+				<l3extRsIngressQosDppPol annotation="" tnQosDppPolName="" userdom="all"/>
+				<l3extRsEgressQosDppPol annotation="" tnQosDppPolName="" userdom="all"/>
+				<l3extRsArpIfPol annotation="" tnArpIfPolName="" userdom="all"/>
+			</l3extLIfP>
+		</l3extLNodeP>
+		<l3extLNodeP annotation="" configIssues="" descr="" name="LEAF-1501-1502" nameAlias="" ownerKey="" ownerTag="" tag="yellow-green" targetDscp="unspecified" userdom=":all:mgmt:common:">
+			<l3extRsNodeL3OutAtt annotation="" configIssues="" rtrId="{{ client['node1502']['rtrId'] }}" rtrIdLoopBack="no" tDn="topology/pod-2/node-1502" userdom=":all:mgmt:common:">
+				<ipRouteP aggregate="no" annotation="" descr="" fromPfxLen="0" ip="0.0.0.0/0" name="" nameAlias="" pref="1" rtCtrl="" toPfxLen="0" userdom=":all:mgmt:common:">
+					<ipNexthopP annotation="" descr="{{ client['node']['route-description'] }}" name="" nameAlias="" nhAddr="{{ client['node']['nhAddr'] }}" pref="unspecified" type="prefix" userdom=":all:mgmt:common:"/>
+				</ipRouteP>
+			</l3extRsNodeL3OutAtt>
+			<l3extRsNodeL3OutAtt annotation="" configIssues="" rtrId="{{ client['node1501']['rtrId'] }}" rtrIdLoopBack="no" tDn="topology/pod-2/node-1501" userdom=":all:mgmt:common:">
+				<ipRouteP aggregate="no" annotation="" descr="" fromPfxLen="0" ip="0.0.0.0/0" name="" nameAlias="" pref="1" rtCtrl="" toPfxLen="0" userdom=":all:mgmt:common:">
+					<ipNexthopP annotation="" descr="{{ client['node']['route-description']}}" name="" nameAlias="" nhAddr="{{ client['node']['nhAddr'] }}" pref="unspecified" type="prefix" userdom=":all:mgmt:common:"/>
+				</ipRouteP>
+			</l3extRsNodeL3OutAtt>
+			<l3extLIfP annotation="" descr="" name="vPC_1501_1502_SW_L2_LEGADO" nameAlias="" ownerKey="" ownerTag="" prio="unspecified" tag="yellow-green" userdom=":all:mgmt:common:">
+				<l3extRsPathL3OutAtt addr="0.0.0.0" annotation="" autostate="disabled" descr="" encap="vlan-{{ client['l3out']['vlanid']}}" encapScope="ctx" ifInstT="ext-svi" ipv6Dad="enabled" isMultiPodDirect="no" llAddr="::" mac="00:22:BD:F8:19:FF" mode="regular" mtu="inherit" tDn="topology/pod-2/protpaths-1501-1502/pathep-[VPC_1501_1502_SW_L2_LEGADO]" targetDscp="unspecified" userdom=":all:mgmt:common:">
+					<l3extMember addr="{{ client['node1502']['ip'] }}" annotation="" descr="" ipv6Dad="enabled" llAddr="::" name="" nameAlias="" side="B" userdom=":all:mgmt:common:">
+						<l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:" status="deleted"/>
+					</l3extMember>
+					<l3extMember addr="{{ client['node1501']['ip'] }}" annotation="" descr="" ipv6Dad="enabled" llAddr="::" name="" nameAlias="" side="A" userdom=":all:mgmt:common:">
+						<l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:" status="deleted"/>
+					</l3extMember>
+				</l3extRsPathL3OutAtt>
+				<l3extRsNdIfPol annotation="" tnNdIfPolName="" userdom="all"/>
+				<l3extRsLIfPCustQosPol annotation="" tnQosCustomPolName="" userdom="all"/>
+				<l3extRsIngressQosDppPol annotation="" tnQosDppPolName="" userdom="all"/>
+				<l3extRsEgressQosDppPol annotation="" tnQosDppPolName="" userdom="all"/>
+				<l3extRsArpIfPol annotation="" tnArpIfPolName="" userdom="all"/>
+			</l3extLIfP>
+		</l3extLNodeP>
+		<l3extInstP annotation="" descr="" exceptionTag="" floodOnEncap="disabled" matchT="AtleastOne" name="extEPG_{{ client['l3out']['name'] }}" nameAlias="" pcEnfPref="unenforced" prefGrMemb="{{ client['l3out']['extEPG']['prefGrMemb'] }}" prio="unspecified" targetDscp="unspecified" userdom=":all:mgmt:common:">
+			<l3extSubnet aggregate="" annotation="" descr="" ip="128.0.0.0/1" name="128.0.0.0_1" nameAlias="" scope="import-security" userdom=":all:mgmt:common:"/>
+			<l3extSubnet aggregate="" annotation="" descr="" ip="0.0.0.0/1" name="0.0.0.0_1" nameAlias="" scope="import-security" userdom=":all:mgmt:common:"/>
+			<fvRsCustQosPol annotation="" tnQosCustomPolName="" userdom="all"/>
+		</l3extInstP>
+	</l3extOut>
+    </fvTenant>
+	
+</imdata>
