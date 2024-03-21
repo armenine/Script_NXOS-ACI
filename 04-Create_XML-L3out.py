@@ -66,3 +66,16 @@ for client in infoList:
     with open(path_file, 'w') as file:
         file.write(output)
 
+    # Rollback 
+    context['Rollback'] = True
+
+    
+    # Fill teamplate with the datas
+    output = template.render(context)
+
+    # path file output
+    path_file = f"Output/Grp_{client['group']}-{client['l3out']['name']}_Rollback.xml"
+
+    # Save the file output
+    with open(path_file, 'w') as file:
+        file.write(output)

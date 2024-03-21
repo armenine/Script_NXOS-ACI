@@ -30,10 +30,18 @@
 			<l3extLIfP annotation="" descr="" name="vPC_1001_1002_SW_L2_LEGADO" nameAlias="" ownerKey="" ownerTag="" prio="unspecified" tag="yellow-green" userdom=":all:mgmt:common:">
 				<l3extRsPathL3OutAtt addr="0.0.0.0" annotation="" autostate="disabled" descr="" encap="vlan-{{ client['l3out']['vlanid'] }}" encapScope="ctx" ifInstT="ext-svi" ipv6Dad="enabled" isMultiPodDirect="no" llAddr="::" mac="00:22:BD:F8:19:FF" mode="regular" mtu="inherit" tDn="topology/pod-1/protpaths-1001-1002/pathep-[VPC_1001_1002_SW_L2_LEGADO]" targetDscp="unspecified" userdom=":all:mgmt:common:">
 					<l3extMember addr="{{ client['node1002']['ip'] }}" annotation="" descr="" ipv6Dad="enabled" llAddr="::" name="" nameAlias="" side="B" userdom=":all:mgmt:common:">
-                    <l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:" status="deleted"/>
+                    {% if Rollback -%}
+					<l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:" status="deleted"/>
+					{% else -%}
+					<l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:"/>
+					{% endif -%}
 					</l3extMember>
 					<l3extMember addr="{{ client['node1001']['ip'] }}" annotation="" descr="" ipv6Dad="enabled" llAddr="::" name="" nameAlias="" side="A" userdom=":all:mgmt:common:">
-                    <l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:" status="deleted"/>
+                    {% if Rollback -%}
+					<l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:" status="deleted"/>
+					{% else -%}
+					<l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:"/>
+					{% endif -%}
 					</l3extMember>
 				</l3extRsPathL3OutAtt>
 				<l3extRsNdIfPol annotation="" tnNdIfPolName="" userdom="all"/>
@@ -57,10 +65,18 @@
 			<l3extLIfP annotation="" descr="" name="vPC_1501_1502_SW_L2_LEGADO" nameAlias="" ownerKey="" ownerTag="" prio="unspecified" tag="yellow-green" userdom=":all:mgmt:common:">
 				<l3extRsPathL3OutAtt addr="0.0.0.0" annotation="" autostate="disabled" descr="" encap="vlan-{{ client['l3out']['vlanid']}}" encapScope="ctx" ifInstT="ext-svi" ipv6Dad="enabled" isMultiPodDirect="no" llAddr="::" mac="00:22:BD:F8:19:FF" mode="regular" mtu="inherit" tDn="topology/pod-2/protpaths-1501-1502/pathep-[VPC_1501_1502_SW_L2_LEGADO]" targetDscp="unspecified" userdom=":all:mgmt:common:">
 					<l3extMember addr="{{ client['node1502']['ip'] }}" annotation="" descr="" ipv6Dad="enabled" llAddr="::" name="" nameAlias="" side="B" userdom=":all:mgmt:common:">
-						<l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:" status="deleted"/>
+					{% if Rollback -%}
+					<l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:" status="deleted"/>
+					{% else -%}
+					<l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:"/>
+					{% endif -%}
 					</l3extMember>
 					<l3extMember addr="{{ client['node1501']['ip'] }}" annotation="" descr="" ipv6Dad="enabled" llAddr="::" name="" nameAlias="" side="A" userdom=":all:mgmt:common:">
-						<l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:" status="deleted"/>
+					{% if Rollback -%}
+					<l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:" status="deleted"/>
+					{% else -%}
+					<l3extIp addr="{{ client['node']['ipVip'] }}" annotation="" descr="" ipv6Dad="enabled" name="" nameAlias="" userdom=":all:mgmt:common:"/>
+					{% endif -%}
 					</l3extMember>
 				</l3extRsPathL3OutAtt>
 				<l3extRsNdIfPol annotation="" tnNdIfPolName="" userdom="all"/>
